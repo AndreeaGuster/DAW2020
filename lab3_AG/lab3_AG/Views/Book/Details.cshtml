@@ -1,0 +1,64 @@
+﻿@model lab3_AG.Models.Book
+
+@{
+    ViewBag.Title = "Details";
+    var emptySummaryMsgVar = "This book has no summary";
+    string emptySummaryMsg = "This book has no summary";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.Label("Title", "Title:")
+<br />
+<p>@Model.Title</p>
+
+@Html.Label("Author", "Author:")
+<br />
+<p>@Model.Author</p>
+
+@if (Model.Publisher != null)
+{
+    @Html.Label("Publisher", "Publisher:")
+    <br />
+    <p>@Model.Publisher.Name</p>
+
+    @Html.Label("Publisher", "Contact Info:")
+    <br />
+    <p>@Model.Publisher.ContactInfo.PhoneNumber</p>
+}
+
+@Html.Label("Summary", "Summary:")
+<br />
+<div class="panel-body">
+    @if (Model.Summary.IsEmpty())
+    {
+        <!--Modalitati de afisare a unui mesaj-->
+        <p>@emptySummaryMsg</p>
+        <p>@emptySummaryMsgVar</p>
+        <p>This book has no summary</p>
+
+        @*Html.Display nu o sa afiseze nimic in acest caz*@
+        @Html.Display("emptySummaryMsgVar")
+    }
+    else
+    {
+        @*@Html.Display("Summary")*@
+        @Html.DisplayFor(b => b.Summary)
+    }
+</div>
+
+@if (Model.Genres.Count > 0)
+{
+    @Html.Label("Genres", "Genres:")
+    <br />
+    <ul>
+        @foreach (var genre in Model.Genres)
+        {
+            <li>@genre.Name</li>
+        }
+    </ul>
+}
+
+@Html.Label("LoadedFromDatabase", "Loaded From Database:")
+<br />
+<p>@Model.LoadedFromDatabase</p>

@@ -15,7 +15,7 @@ namespace lab3_AG.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            List<Book> books = db.Books.Include("Publisher").ToList();
+            List<Book> books = db.Books.ToList();
             ViewBag.Books = books;
 
             return View();

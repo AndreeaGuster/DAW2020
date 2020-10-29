@@ -8,18 +8,20 @@
 
 @foreach (var book in ViewBag.Books)
 {
-    <div class="panel-body">
-        @Html.Label("Title", "Title:")
-        <br />
-        <p>@book.Title</p>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            @Html.Label("Title", "Title:")
+            <br />
+            <p>@book.Title</p>
 
-        @Html.Label("Author", "Author:")
-        <br />
-        <p>@book.Author</p>
+            @Html.Label("Author", "Author:")
+            <br />
+            <p>@book.Author</p>
 
-        @using (Html.BeginForm(actionName: "Details", controllerName: "Book", method: FormMethod.Get, routeValues: new { id = book.BookId }))
-        {
-            <button class="btn btn-primary">Details</button>
-        }
+            @using (Html.BeginForm(actionName: "Details", controllerName: "Book", method: FormMethod.Get, routeValues: new { id = book.BookId }))
+            {
+                <button class="btn btn-primary">Details</button>
+            }
+        </div>
     </div>
 }

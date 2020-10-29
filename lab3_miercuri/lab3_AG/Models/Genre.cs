@@ -8,7 +8,6 @@ namespace lab3_AG.Models
 {
     public class Genre
     {
-        [Key]
         public int GenreId { get; set; }
         public string Name { get; set; }
 

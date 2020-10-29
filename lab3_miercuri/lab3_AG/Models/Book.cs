@@ -11,9 +11,11 @@ namespace lab3_AG.Models
 {
     public class Book
     {
-        //[Key]
-        //[Column("Book_id")]
-        [Key, Column("Book_id")]
+        /*[Key] marcheaza o cheie primara, nu este necesar, 
+         * EF marcheaza in mod implicit proprietatea BookId ca fiind un PK deoarece denumirea proprietatii respecta "naming convention"
+         * [Column("Book_id")] modifica denumirea coloanei BookId din tabelul Book 
+         */
+        [Key, Column("Book_Id")]
         public int BookId { get; set; }
 
         //[MinLength(10), MaxLength(200)]
@@ -23,7 +25,8 @@ namespace lab3_AG.Models
         public string Title { get; set; }
         public string Author { get; set; }
 
-        [NotMapped]
+        // daca vrem ca o proprietate sa nu fie considerata coloana a tabelului
+        [NotMapped]  
         public DateTime LoadedFromDatabase { get; set; }
 
         public string Summary { get; set; }
@@ -37,7 +40,7 @@ namespace lab3_AG.Models
         }*/
 
         // one to many
-        [Column("Publisher_id")]
+        [Column("Publisher_Id")]
         public int PublisherId { get; set; }
         public virtual Publisher Publisher { get; set; }
 
@@ -104,6 +107,7 @@ namespace lab3_AG.Models
                 }
             });
 
+            // aceasta linie trebuie sa ramana comentata din momentul in care am introdus relatii intre tabele
             //ctx.Books.Add(new Book { Title = "Data curenta", Author = DateTime.Now.ToString() });
             ctx.SaveChanges();
             base.Seed(ctx);

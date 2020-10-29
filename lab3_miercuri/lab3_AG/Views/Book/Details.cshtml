@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "Details";
+
+    // declaram si initializam 2 variabile
     var emptySummaryMsgVar = "This book has no summary";
     string emptySummaryMsg = "This book has no summary";
 }
@@ -42,6 +44,8 @@
     }
     else
     {
+        @*Modalitati de a folosi Html.Display, intre "" trebuie pus numele proprietatii*@
+
         @*@Html.Display("Summary")*@
         @Html.DisplayFor(b => b.Summary)
     }
@@ -58,7 +62,3 @@
         }
     </ul>
 }
-
-@Html.Label("LoadedFromDatabase", "Loaded From Database:")
-<br />
-<p>@Model.LoadedFromDatabase</p>

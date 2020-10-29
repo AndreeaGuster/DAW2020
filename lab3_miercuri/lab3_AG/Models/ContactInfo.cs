@@ -7,15 +7,14 @@ using System.Web;
 
 namespace lab3_AG.Models
 {
-    [Table("ContactsInfo")]
+    [Table("ContactsInfo")] // modifica numele tabelei din BD
     public class ContactInfo
     {
-        [Key]
         public int ContactInfoId { get; set; }
         public string PhoneNumber { get; set; }
 
         // one to one
-        [Required]
+        [Required] // OBLIGATORIU !!!
         public virtual Publisher Publisher { get; set; }
     }
 }

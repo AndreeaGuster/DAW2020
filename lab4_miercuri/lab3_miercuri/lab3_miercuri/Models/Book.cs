@@ -73,7 +73,7 @@ namespace lab3_miercuri.Models
             {
                 Title = "The Atomic Times",
                 Author = "Michael Harris",
-                Publisher = new Publisher { Name = "HarperCollins", ContactInfo = new ContactInfo { PhoneNumber = "07123456789" } },
+                Publisher = new Publisher { Name = "HarperCollins", ContactInfo = new ContactInfo { PhoneNumber = "0712345673" } },
                 BookType = cover1,
                 Genres = new List<Genre> {
                     new Genre { Name = "Horror"}
@@ -83,7 +83,7 @@ namespace lab3_miercuri.Models
             {
                 Title = "In Defense of Elitism",
                 Author = "Joel Stein",
-                Publisher = new Publisher { Name = "Macmillan Publishers", ContactInfo = new ContactInfo { PhoneNumber = "07123458789" } },
+                Publisher = new Publisher { Name = "Macmillan Publishers", ContactInfo = new ContactInfo { PhoneNumber = "0712345872" } },
                 BookType = cover1,
                 Genres = new List<Genre> {
                     new Genre { Name = "Humor"}
@@ -94,7 +94,7 @@ namespace lab3_miercuri.Models
                 Title = "The Canterbury Tales",
                 Author = "Geoffrey Chaucer",
                 Summary = "At the Tabard Inn, a tavern in Southwark, near London, the narrator joins a company of twenty-nine pilgrims. The pilgrims, like the narrator, are traveling to the shrine of the martyr Saint Thomas Becket in Canterbury. The narrator gives a descriptive account of twenty-seven of these pilgrims, including a Knight, Squire, Yeoman, Prioress, Monk, Friar, Merchant, Clerk, Man of Law, Franklin, Haberdasher, Carpenter, Weaver, Dyer, Tapestry-Weaver, Cook, Shipman, Physician, Wife, Parson, Plowman, Miller, Manciple, Reeve, Summoner, Pardoner, and Host. (He does not describe the Second Nun or the Nun’s Priest, although both characters appear later in the book.) The Host, whose name, we find out in the Prologue to the Cook’s Tale, is Harry Bailey, suggests that the group ride together and entertain one another with stories. He decides that each pilgrim will tell two stories on the way to Canterbury and two on the way back. Whomever he judges to be the best storyteller will receive a meal at Bailey’s tavern, courtesy of the other pilgrims. The pilgrims draw lots and determine that the Knight will tell the first tale.",
-                Publisher = new Publisher { Name = "Scholastic", ContactInfo = new ContactInfo { PhoneNumber = "07113456789" } },
+                Publisher = new Publisher { Name = "Scholastic", ContactInfo = new ContactInfo { PhoneNumber = "0711345678" } },
                 BookType = cover2,
                 Genres = new List<Genre> {
                     new Genre { Name = "Satire"},
@@ -107,7 +107,7 @@ namespace lab3_miercuri.Models
             {
                 Title = "Python Crash Course, 2nd Edition: A Hands-On, Project-Based Introduction to Programming",
                 Author = "Eric Matthers",
-                Publisher = new Publisher { Name = "Schol", ContactInfo = new ContactInfo { PhoneNumber = "07126656789" } },
+                Publisher = new Publisher { Name = "Schol", ContactInfo = new ContactInfo { PhoneNumber = "0712665671" } },
                 BookType = cover2,
                 Genres = new List<Genre> {
                     new Genre { Name = "Programming"}

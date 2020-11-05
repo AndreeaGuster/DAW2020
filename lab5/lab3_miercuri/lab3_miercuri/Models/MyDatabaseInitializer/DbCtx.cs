@@ -87,8 +87,8 @@ namespace lab3_miercuri.Models.MyDatabaseInitializer
             ctx.Regions.Add(new Region { RegionId = 44, Name = "București-Sector-4" });
             ctx.Regions.Add(new Region { RegionId = 45, Name = "București-Sector 5" });
             ctx.Regions.Add(new Region { RegionId = 46, Name = "București - Sector 6" });
-            ctx.Regions.Add(new Region { RegionId = 47, Name = "Călărași" });
-            ctx.Regions.Add(new Region { RegionId = 48, Name = "Giurgiu" });
+            ctx.Regions.Add(new Region { RegionId = 51, Name = "Călărași" });
+            ctx.Regions.Add(new Region { RegionId = 52, Name = "Giurgiu" });
 
             ContactInfo contact1 = new ContactInfo
             {

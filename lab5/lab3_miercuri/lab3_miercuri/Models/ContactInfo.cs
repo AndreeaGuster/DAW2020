@@ -21,7 +21,7 @@ namespace lab3_miercuri.Models
         [Required, RegularExpression(@"^(0[1-9])|(1[012])$", ErrorMessage = "This is not a valid month!")]
         public string BirthMonth { get; set; }
 
-        [Required, RegularExpression(@"^((0[1-9])|[123]\d)$", ErrorMessage = "This is not a valid day number!")]
+        [Required, RegularExpression(@"^((0[1-9])|([12]\d)|(3[01]))$", ErrorMessage = "This is not a valid day number!")]
         public string BirthDay { get; set; }
 
         [Required]

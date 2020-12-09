@@ -12,7 +12,11 @@ namespace lab6
     {
         protected void Application_Start()
         {
-            AreaRegistration.RegisterAllAreas();
+			// in cazul in care adaugam in baza de date si alte tabele pe langa cele specifice utilizatorilor
+			// trebuie sa specificam modalitatea de initializare a bazei de date
+			Database.SetInitializer<ApplicationDbContext>(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
+            
+			AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);

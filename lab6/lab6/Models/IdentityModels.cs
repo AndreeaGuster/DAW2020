@@ -24,10 +24,13 @@ namespace lab6.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-		
+
+        public DbSet<Book> Books { get; set; }
+
         public static ApplicationDbContext Create()
         {
-            return new ApplicationDbContext();
+            return new ApplicationDbContext(); ;
+
         }
     }
 }

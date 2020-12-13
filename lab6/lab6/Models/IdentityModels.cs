@@ -23,6 +23,8 @@ namespace lab6.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            Database.SetInitializer<ApplicationDbContext>(new Initp());
+
         }
 
         public DbSet<Book> Books { get; set; }
@@ -31,6 +33,18 @@ namespace lab6.Models
         {
             return new ApplicationDbContext(); ;
 
+        }
+    }
+    public class Initp : DropCreateDatabaseAlways<ApplicationDbContext>
+    {
+        protected override void Seed(ApplicationDbContext ctx)
+        {
+            Book book1 = new Book { Title = "Book1" , Author= "Author1"};
+            Book book2 = new Book { Title = "Book2" , Author= "Author2"};
+            ctx.Books.Add(book1);
+            ctx.Books.Add(book2);
+            ctx.SaveChanges();
+            base.Seed(ctx);
         }
     }
 }

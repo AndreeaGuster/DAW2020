@@ -16,7 +16,7 @@ namespace lab6
         {
 			// in cazul in care adaugam in baza de date si alte tabele pe langa cele specifice utilizatorilor
 			// trebuie sa specificam modalitatea de initializare a bazei de date
-			Database.SetInitializer<ApplicationDbContext>(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
+			//Database.SetInitializer<ApplicationDbContext>(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
             
 			AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

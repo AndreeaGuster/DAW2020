@@ -44,6 +44,13 @@ namespace lab3_miercuri.Models
 
         // dropdown lists
         public IEnumerable<SelectListItem> BookTypeList { get; set; }
+        public List<Genre> GenreCheckBoxList { get; set; }
         public IEnumerable<SelectListItem> PublisherList { get; set; }
+
+        public Book()
+        {
+            GenreCheckBoxList = new List<Genre>();
+            Genres = new List<Genre>();
+        }
     }
 }

@@ -130,7 +130,9 @@
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\BookTypeController.cs" />
     <Compile Include="Controllers\ContactInfoController.cs" />
+    <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PublisherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -193,6 +195,10 @@
     <Content Include="Views\BookType\New.cshtml" />
     <Content Include="Views\BookType\Edit.cshtml" />
     <Content Include="Views\ContactInfo\New.cshtml" />
+    <Content Include="Views\Genre\Index.cshtml" />
+    <Content Include="Views\Genre\Details.cshtml" />
+    <Content Include="Views\Shared\Genre.cshtml" />
+    <Content Include="Views\Publisher\New.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

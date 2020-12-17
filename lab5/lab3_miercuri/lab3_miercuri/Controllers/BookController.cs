@@ -19,8 +19,8 @@ namespace lab3_miercuri.Controllers
             ViewBag.Books = books;
             return View();
         }
-        
-      
+
+
         public ActionResult Details(int? id)
         {
             if (id.HasValue)
@@ -41,8 +41,50 @@ namespace lab3_miercuri.Controllers
             Book book = new Book();
             book.BookTypeList = GetAllBookTypes();
             book.PublisherList = GetAllPublishers();
-            book.Genres = new List<Genre>();
+
+            var genres = db.Genres.ToList();
+            var checkBoxListItems = new List<Genre>();
+
+            foreach (var genre in genres)
+            {
+                checkBoxListItems.Add(new Genre()
+                {
+                    GenreId = genre.GenreId,
+                    Name = genre.Name,
+                    isActive = false
+                });
+            }
+            book.GenreCheckBoxList = checkBoxListItems;
+            book.Genres = checkBoxListItems;
             return View(book);
+        }
+
+        public static void AddGenre(Book bookRequest, List<int> genres)
+        {
+            using (DbCtx ctx = new DbCtx())
+            {
+                var newBook = new Book()
+                {
+                    Title = bookRequest.Title,
+                    Author = bookRequest.Author,
+                    NoOfPages = bookRequest.NoOfPages,
+                    Summary = bookRequest.Summary,
+                    Publisher = bookRequest.Publisher,
+                    PublisherId = bookRequest.PublisherId,
+                    BookType = bookRequest.BookType,
+                    BookTypeId = bookRequest.BookTypeId
+                };
+                foreach (var genreId in genres)
+                {
+                    var newGenre = ctx.Genres.Find(genreId);
+                    newBook.Genres.Add(newGenre);
+                    newBook.GenreCheckBoxList.Add(newGenre);
+                }
+
+                ctx.Books.Add(newBook);
+                ctx.SaveChanges();
+            }
+
         }
 
         [HttpPost]
@@ -50,17 +92,20 @@ namespace lab3_miercuri.Controllers
         {
             bookRequest.BookTypeList = GetAllBookTypes();
             bookRequest.PublisherList = GetAllPublishers();
+
+            var selectedGenres = bookRequest.GenreCheckBoxList.Where(x => x.isActive)
+                .Select(x => x.GenreId).ToList();
+
             try
             {
                 if (ModelState.IsValid)
                 {
-                    db.Books.Add(bookRequest);
-                    db.SaveChanges();
+                    AddGenre(bookRequest, selectedGenres);
                     return RedirectToAction("Index");
                 }
                 return View(bookRequest);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return View(bookRequest);
             }
@@ -132,13 +177,13 @@ namespace lab3_miercuri.Controllers
         public IEnumerable<SelectListItem> GetAllBookTypes()
         {
             var selectList = new List<SelectListItem>();
-            foreach(var cover in db.BookTypes.ToList())
+            foreach (var cover in db.BookTypes.ToList())
             {
                 selectList.Add(new SelectListItem
                 {
                     Value = cover.BookTypeId.ToString(),
                     Text = cover.Name
-                }) ; 
+                });
             }
             return selectList;
         }

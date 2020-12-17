@@ -21,7 +21,7 @@
 
     @Html.Label("NoOfPages", "Number of pages:")
     <br />
-    @Html.TextBoxFor(b => b.NoOfPages, null, new { placeholder = "Type in the book's number of pages", @class = "form-control" , @type = "number" })
+    @Html.TextBoxFor(b => b.NoOfPages, null, new { placeholder = "Type in the book's number of pages", @class = "form-control", @type = "number" })
     @Html.ValidationMessageFor(b => b.NoOfPages, "", new { @class = "text-danger" })
     <br />
 
@@ -45,6 +45,14 @@
     <br />
     <br />
 
+    for (int i = 0; i < Model.GenreCheckBoxList.Count(); i++)
+    {
+        @Html.HiddenFor(b => b.GenreCheckBoxList[i].GenreId)
+        @Html.CheckBoxFor(b=> b.GenreCheckBoxList[i].isActive)
+        @Html.DisplayFor(b => b.GenreCheckBoxList[i].Name)
+        <br />
+    }
+    <br />
+
     <button class="btn btn-primary" type="submit">Create</button>
 }
-

@@ -14,6 +14,8 @@ namespace lab3_miercuri.Models
         MaxLength(20, ErrorMessage = "Genre name cannot be more than 20!")]
         public string Name { get; set; }
 
+        public bool isActive { get; set; }  // ca sa stim daca este bifat check-box-ul
+
         // many-to-many relationship
         public virtual ICollection<Book> books { get; set; }
     }

@@ -41,21 +41,8 @@ namespace lab3_miercuri.Controllers
             Book book = new Book();
             book.BookTypeList = GetAllBookTypes();
             book.PublisherList = GetAllPublishers();
-
-            var genres = db.Genres.ToList();
-            var checkBoxListItems = new List<Genre>();
-
-            foreach (var genre in genres)
-            {
-                checkBoxListItems.Add(new Genre()
-                {
-                    GenreId = genre.GenreId,
-                    Name = genre.Name,
-                    isActive = false
-                });
-            }
-            book.GenreCheckBoxList = checkBoxListItems;
-            book.Genres = checkBoxListItems;
+            book.GenreCheckBoxList = GetAllGenres();
+            book.Genres = GetAllGenres();
             return View(book);
         }
 
@@ -74,6 +61,7 @@ namespace lab3_miercuri.Controllers
                     BookType = bookRequest.BookType,
                     BookTypeId = bookRequest.BookTypeId
                 };
+
                 foreach (var genreId in genres)
                 {
                     var newGenre = ctx.Genres.Find(genreId);
@@ -84,7 +72,6 @@ namespace lab3_miercuri.Controllers
                 ctx.Books.Add(newBook);
                 ctx.SaveChanges();
             }
-
         }
 
         [HttpPost]
@@ -103,10 +90,13 @@ namespace lab3_miercuri.Controllers
                     AddGenre(bookRequest, selectedGenres);
                     return RedirectToAction("Index");
                 }
+				
+				bookRequest.GenreCheckBoxList = GetAllGenres();
                 return View(bookRequest);
             }
             catch (Exception e)
             {
+				bookRequest.GenreCheckBoxList = GetAllGenres();
                 return View(bookRequest);
             }
         }
@@ -171,6 +161,23 @@ namespace lab3_miercuri.Controllers
                 return RedirectToAction("Index");
             }
             return HttpNotFound("Couldn't find the book with id " + id.ToString() + "!");
+        }
+
+        public List<Genre> GetAllGenres()
+        {
+            var genres = db.Genres.ToList();
+            var checkBoxListItems = new List<Genre>();
+
+            foreach (var genre in genres)
+            {
+                checkBoxListItems.Add(new Genre()
+                {
+                    GenreId = genre.GenreId,
+                    Name = genre.Name,
+                    isActive = false
+                });
+            }
+            return checkBoxListItems;
         }
 
         [NonAction]

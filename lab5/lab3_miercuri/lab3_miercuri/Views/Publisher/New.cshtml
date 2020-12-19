@@ -1,0 +1,63 @@
+﻿@model lab3_miercuri.Models.PublisherContactViewModel
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Publisher", method: FormMethod.Post))
+{
+    @Html.Label("Name", "Name:")
+    <br />
+    @Html.TextBoxFor(p => p.Name, null, new { placeholder = "Type in the publisher's name", @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.Name, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.LabelFor(p => p.PhoneNumber, "Phone number:")
+    <br />
+    @Html.TextBoxFor(p => p.PhoneNumber, null, new { placeholder = "Type in the phone number", @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.PhoneNumber, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.LabelFor(p => p.CNP, "CNP:")
+    <br />
+    @Html.TextBoxFor(p => p.CNP, null, new { placeholder = "Type in the CNP", @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.CNP, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    <label>Birth date:</label>
+    <br />
+    @Html.TextBoxFor(p => p.BirthDay, null, new { placeholder = "Day", @class = "form-control", @style = "margin-bottom:3px" })
+    @Html.ValidationMessageFor(p => p.BirthDay, "", new { @class = "text-danger" })
+
+    @Html.TextBoxFor(p => p.BirthMonth, null, new { placeholder = "Month", @class = "form-control", @style = "margin-bottom:3px" })
+    @Html.ValidationMessageFor(p => p.BirthMonth, "", new { @class = "text-danger" })
+
+    @Html.TextBoxFor(p => p.BirthYear, null, new { placeholder = "Year", @class = "form-control", @style = "margin-bottom:3px", @type = "number" })
+    @Html.ValidationMessageFor(p => p.BirthYear, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.Label("Resident", "Resident:")
+    @Html.CheckBoxFor(p => p.Resident, new { @style = "margin-left:10px" })
+    <br />
+    <br />
+
+    @Html.Label("GenderType", "Gender:")
+    <br />
+    @Html.DropDownListFor(p => p.GenderType, new SelectList(ViewBag.GenderList, "Value", "Text"), "Choose a gender", new { @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.GenderType, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.Label("Regions", "Region:")
+    <br />
+    @Html.DropDownListFor(p => p.RegionId, new SelectList(ViewBag.RegionList, "Value", "Text"), "Choose a region", new { @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.RegionId, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    <button class="btn btn-primary" type="submit">Create</button>
+}

@@ -131,6 +131,7 @@
     <Compile Include="Controllers\BookTypeController.cs" />
     <Compile Include="Controllers\ContactInfoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PublisherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -143,6 +144,7 @@
     <Compile Include="Models\MyValidation\CNPValidator.cs" />
     <Compile Include="Models\MyValidation\PrimeNumberValidator.cs" />
     <Compile Include="Models\Publisher.cs" />
+    <Compile Include="Models\PublisherContactViewModel.cs" />
     <Compile Include="Models\Region.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -194,6 +196,10 @@
     <Content Include="Views\BookType\New.cshtml" />
     <Content Include="Views\BookType\Edit.cshtml" />
     <Content Include="Views\ContactInfo\New.cshtml" />
+    <Content Include="Views\Publisher\Index.cshtml" />
+    <Content Include="Views\Publisher\Details.cshtml" />
+    <Content Include="Views\Publisher\Edit.cshtml" />
+    <Content Include="Views\Publisher\New.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -15,13 +15,10 @@ namespace lab3_miercuri.Models.MyValidation
             DbCtx db = new DbCtx();
             return db.ContactsInfo.FirstOrDefault(ci => ci.CNP == cnp) == null;
         }
-
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+     
+        private ValidationResult validateCNP(string cnp, Gender genderType, int birthYear, 
+            string birthMonth, string birthDay, bool resident, int regionNo)
         {
-            ContactInfo contact = (ContactInfo)validationContext.ObjectInstance;
-
-            string cnp = contact.CNP;
-
             if (cnp == null)
                 return new ValidationResult("CNP field is required!");
 
@@ -46,84 +43,97 @@ namespace lab3_miercuri.Models.MyValidation
             switch (s)
             {
                 case '1':
-                    if (!(contact.GenderType.Equals(Gender.Male) && contact.BirthYear >= 1900 && contact.BirthYear <= 1999))
+                    if (!(genderType.Equals(Gender.Male) && birthYear >= 1900 && birthYear <= 1999))
                         return new ValidationResult("S part is not valid!");
                     break;
                 case '2':
-                    if (!(contact.GenderType.Equals(Gender.Female) && contact.BirthYear >= 1900 && contact.BirthYear <= 1999))
+                    if (!(genderType.Equals(Gender.Female) && birthYear >= 1900 && birthYear <= 1999))
                         return new ValidationResult("S part is not valid!");
                     break;
                 case '3':
-                    if (!(contact.GenderType.Equals(Gender.Male) && contact.BirthYear >= 1800 && contact.BirthYear <= 1899))
+                    if (!(genderType.Equals(Gender.Male) && birthYear >= 1800 && birthYear <= 1899))
                         return new ValidationResult("S part is not valid!");
                     break;
                 case '4':
-                    if (!(contact.GenderType.Equals(Gender.Female) && contact.BirthYear >= 1800 && contact.BirthYear <= 1899))
+                    if (!(genderType.Equals(Gender.Female) && birthYear >= 1800 && birthYear <= 1899))
                         return new ValidationResult("S part is not valid!");
                     break;
                 case '5':
-                    if (!(contact.GenderType.Equals(Gender.Male) && contact.BirthYear >= 2000 && contact.BirthYear <= 2099))
+                    if (!(genderType.Equals(Gender.Male) && birthYear >= 2000 && birthYear <= 2099))
                         return new ValidationResult("S part is not valid!");
                     break;
                 case '6':
-                    if (!(contact.GenderType.Equals(Gender.Female) && contact.BirthYear >= 2000 && contact.BirthYear <= 2099))
+                    if (!(genderType.Equals(Gender.Female) && birthYear >= 2000 && birthYear <= 2099))
                         return new ValidationResult("S part is not valid!");
                     break;
                 case '7':
-                    if (!(contact.GenderType.Equals(Gender.Male) && contact.Resident.Equals(true)))
+                    if (!(genderType.Equals(Gender.Male) && resident.Equals(true)))
                         return new ValidationResult("S part is not valid!");
                     break;
                 case '8':
-                    if (!(contact.GenderType.Equals(Gender.Female) && contact.Resident.Equals(true)))
+                    if (!(genderType.Equals(Gender.Female) && resident.Equals(true)))
                         return new ValidationResult("S part is not valid!");
                     break;
                 default: return new ValidationResult("S part is not valid!");
             }
 
-            string lastTwoDigits = contact.BirthYear.ToString().Substring(2, 2);
+            string lastTwoDigits = birthYear.ToString().Substring(2, 2);
             if (!aa.Equals(lastTwoDigits))
                 return new ValidationResult("AA part is not valid!");
 
-            if (!ll.Equals(contact.BirthMonth))
+            if (!ll.Equals(birthMonth))
                 return new ValidationResult("LL part is not valid!");
 
-            if (!zz.Equals(contact.BirthDay))
+            if (!zz.Equals(birthDay))
                 return new ValidationResult("ZZ part is not valid!");
 
-               int regionNo = contact.RegionId;
-               string region;
+            string region;
 
-               if (regionNo < 10)
-                   region = "0" + regionNo.ToString();
-               else
-                   region = regionNo.ToString();
+            if (regionNo < 10)
+                region = "0" + regionNo.ToString();
+            else
+                region = regionNo.ToString();
 
-              if (!jj.Equals(region))
-                   return new ValidationResult("JJ part is not valid!");
-           
-             regex = new Regex(@"^((00[1-9])|(0[1-9]\d)|([1-9]\d{2}))$");
-             if (!regex.IsMatch(nnn))
-                 return new ValidationResult("NNN part is not valid!");
-           
-           // validam componenta C
-           int rez = (s - '0') * 2;
-           rez += (aa.ElementAt(0) - '0') * 7 + (aa.ElementAt(1) - '0') * 9;
-           rez += (ll.ElementAt(0) - '0') * 1 + (ll.ElementAt(1) - '0') * 4;
-           rez += (zz.ElementAt(0) - '0') * 6 + (zz.ElementAt(1) - '0') * 3;
-           rez += (jj.ElementAt(0) - '0') * 5 + (jj.ElementAt(1) - '0') * 8;
-           rez += (nnn.ElementAt(0) - '0') * 2 + (nnn.ElementAt(1) - '0') * 7 + (nnn.ElementAt(2) - '0') * 9;
-           rez %= 11;
-           if (rez == 10)
-           {
-               if (!c.Equals('1'))
-                   return new ValidationResult("C part is not valid!");
-           }
-           else
-           {
-               if ((c - '0') != rez)
-                   return new ValidationResult("C part is not valid!");
-           }
+            if (!jj.Equals(region))
+                return new ValidationResult("JJ part is not valid!");
+
+            regex = new Regex(@"^((00[1-9])|(0[1-9]\d)|([1-9]\d{2}))$");
+            if (!regex.IsMatch(nnn))
+                return new ValidationResult("NNN part is not valid!");
+
+            // validam componenta C
+            int rez = (s - '0') * 2;
+            rez += (aa.ElementAt(0) - '0') * 7 + (aa.ElementAt(1) - '0') * 9;
+            rez += (ll.ElementAt(0) - '0') * 1 + (ll.ElementAt(1) - '0') * 4;
+            rez += (zz.ElementAt(0) - '0') * 6 + (zz.ElementAt(1) - '0') * 3;
+            rez += (jj.ElementAt(0) - '0') * 5 + (jj.ElementAt(1) - '0') * 8;
+            rez += (nnn.ElementAt(0) - '0') * 2 + (nnn.ElementAt(1) - '0') * 7 + (nnn.ElementAt(2) - '0') * 9;
+            rez %= 11;
+            if (rez == 10)
+            {
+                if (!c.Equals('1'))
+                    return new ValidationResult("C part is not valid!");
+            }
+            else
+            {
+                if ((c - '0') != rez)
+                    return new ValidationResult("C part is not valid!");
+            }
             return ValidationResult.Success;
+        }
+
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            if (typeof(ContactInfo).IsInstanceOfType(validationContext.ObjectInstance))
+            {
+                ContactInfo contact = (ContactInfo)validationContext.ObjectInstance;
+                return validateCNP(contact.CNP, contact.GenderType, contact.BirthYear,
+                    contact.BirthMonth, contact.BirthDay, contact.Resident, contact.RegionId);
+            }
+
+            PublisherContactViewModel pc = (PublisherContactViewModel)validationContext.ObjectInstance;
+            return validateCNP(pc.CNP, pc.GenderType, pc.BirthYear,
+                pc.BirthMonth, pc.BirthDay, pc.Resident, pc.RegionId);
         }
     }
 }
